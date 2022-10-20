@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
     <link rel="stylesheet" href="/style.css">
+    <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script nonce="b0359274-e2dd-4132-8699-78996643b467">
       (function (w, d) {
         !(function (Z, _, ba, bb) {
@@ -71,5 +72,17 @@
     {% include 'layouts/header.njk' %}
     {{ content | safe }}
     {% include 'layouts/footer.njk' %}
+
+    <script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
   </body>
 </html>
